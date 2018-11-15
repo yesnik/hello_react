@@ -1,0 +1,10 @@
+.greeting {
+	background: #ccc;
+}
+.notes {
+  background: #def3fb;
+  border: 1px dotted #ccc;
+  border-radius: 5px;
+  margin: 10px 0 20px;
+  padding: 10px 10px 10px 30px;
+}
