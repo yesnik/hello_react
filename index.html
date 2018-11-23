@@ -63,6 +63,7 @@ this.setState(function(state, props) {
 This is not React-specific behavior; it is a part of how functions work in JavaScript. Generally, if you refer to a method without () after it, 
 such as <i>onClick={this.handleClick}</i>, you should bind that method.
       </li>
+      <li>React’s <i>one-way data flow</i> (also called one-way binding) keeps everything modular and fast.</li>
     </ul>
 
     <h2>5. Conditional Rendering</h2>
@@ -135,8 +136,21 @@ const todoItems = todos.map((todo, index) =>
     <h2>8. Lifting State Up</h2>
     <div id="root-8"></div>
     <ul class="notes">
+      <li>There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. </li>
       <li>In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called “lifting state up”.</li>
     </ul>
+
+    <h2>9. props.children</h2>
+    <div id="root-9"></div>
+    <ul class="notes">
+      <li>
+        Anything inside the &lt;FancyBorder&gt; JSX tag gets passed into 
+          the FancyBorder component as a <i>children</i> prop. 
+      </li>
+      <li>At Facebook, we use React in thousands of components, and we haven’t found any use cases where we would recommend creating component inheritance hierarchies.</li>
+      <li>If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.</li>
+    </ul>
+
 
     <!--
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>

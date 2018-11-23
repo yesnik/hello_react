@@ -1,6 +1,21 @@
 .greeting {
 	background: #ccc;
 }
+.flash-message {
+  border: 1px solid;
+  padding: 5px 10px;
+  margin: 10px;
+}
+.flash-message_error {
+  border-color: red;
+  background: #ffc3d9;
+  color: red;
+}
+.flash-message_success {
+  border-color: green;
+  background: #cffbe0;
+  color: green;
+}
 .notes {
   background: #def3fb;
   border: 1px dotted #ccc;

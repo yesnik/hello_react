@@ -500,3 +500,25 @@ ReactDOM.render(
   <BoilCalculator />,
   document.getElementById('root-8')
 );
+
+// Example 9
+function FlashMessage(props) {
+  return (
+    <div className={'flash-message flash-message_' + props.type}>
+      {props.children}
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <div>
+    <FlashMessage type="error">
+      <h4>Oops! Some error occured.</h4>
+    </FlashMessage>
+    <FlashMessage type="success">
+      <h4>Congratulations! I've completed challenge.</h4>
+      <p>Now you can start with something new.</p>
+    </FlashMessage>
+  </div>,
+  document.getElementById('root-9')
+);
