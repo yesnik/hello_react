@@ -1,0 +1,10 @@
+{
+  "name": "react-products-app",
+  "version": "1.0.0",
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  },
+  "scripts": {
+    "build": "babel src -d lib"
+  }
+}
