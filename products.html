@@ -9,6 +9,52 @@
     <h2>Products App</h2>
     <div id="root"></div>
 
+    <p>
+      <a href="https://reactjs.org/docs/thinking-in-react.html">Source of lesson</a>
+    </p>
+
+    <hr />
+
+    <h3>About this app</h3>
+
+    <p>Think of all of the pieces of data in our example application. We have:</p>
+
+    <ul>
+      <li>The original list of products</li>
+      <li>The search text the user has entered</li>
+      <li>The value of the checkbox</li>
+      <li>The filtered list of products</li>
+    </ul>
+
+    <p>
+      Let’s go through each one and figure out which one is state.
+    </p>
+
+    <h4>Ask 3 questions about each piece of data</h4>
+
+    <ol>
+      <li>Is it passed in from a parent via props? If so, it probably isn’t state.</li>
+      <li>Does it remain unchanged over time? If so, it probably isn’t state.</li>
+      <li>Can you compute it based on any other state or props in your component? If so, it isn’t state.</li>
+    </ol>
+
+    <p><b>Apply these rules to our app:</b></p>
+
+    <ul>
+      <li>The original list of products is passed in as props, so that’s not state.</li>
+      <li>The search text and the checkbox seem to be state since they change over time and can’t be computed from anything. </li>
+      <li>And finally, the filtered list of products isn’t state because it can be computed by combining the original list of products with the search text and value of the checkbox.</li>
+    </ul>
+
+<p>So finally, our state is:</p>
+
+<ul>
+  <li>The search text the user has entered</li>
+  <li>The value of the checkbox</li>
+</ul>
+
+
+    
 
     <!--
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
