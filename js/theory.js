@@ -1,5 +1,4 @@
-// Example 1
-
+// Example 1. Elements
 function getFullName(user) {
 	return user.firstName + ' ' + user.lastName;
 }
@@ -37,7 +36,7 @@ function tick() {
 
 setInterval(tick, 1000);
 
-// Example 2
+// Example 2. Function and Class Components
 // Function component
 function User(props) {
   return (
@@ -67,7 +66,7 @@ ReactDOM.render(
   document.getElementById('root-2')
 );
 
-// Example 3
+// Example 3. State and Lifecycle
 class ClockClass extends React.Component {
   constructor(props) {
     super(props);
@@ -101,7 +100,7 @@ ReactDOM.render(
   document.getElementById('root-3')
 );
 
-// Example 4
+// Example 4. Events
 class ToggleButton extends React.Component {
   constructor(props) {
     super(props);
@@ -131,7 +130,7 @@ ReactDOM.render(
   document.getElementById('root-4')
 );
 
-// Example 5
+// Example 5. Conditional Rendering
 function LoginButton(props) {
   return <button onClick={props.onClick}>Login</button>
 }
@@ -143,7 +142,8 @@ function LogoutButton(props) {
 class LoginControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isLoggedIn: true};
+    this.state = {isLoggedIn: false};
+
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
   }
@@ -158,14 +158,23 @@ class LoginControl extends React.Component {
 
   render() {
     let button;
+    const isLoggedIn = this.state.isLoggedIn;
 
-    if (this.state.isLoggedIn) {
+    if (isLoggedIn) {
       button = <LogoutButton onClick={this.handleLogoutClick} />;
     } else {
       button = <LoginButton onClick={this.handleLoginClick} />;
     }
 
-    return <div>{button}</div>;
+    return (
+      <div>
+      {button}
+
+      {isLoggedIn &&
+        <p>You're logged in!</p>
+      }
+      </div>
+    );
   }
 }
 
@@ -174,7 +183,7 @@ ReactDOM.render(
   document.getElementById('root-5')
 );
 
-// Example 6
+// Example 6. Lists and keys
 function NumberList(props) {
   const listItems = props.numbers.map((num) =>
     <li key={num}>{num}</li>
@@ -196,9 +205,12 @@ function CompaniesPage(props) {
 
   return (
     <div> 
+      <h5>Companies List</h5>
       <ul>{menuItems}</ul>
+      
       <hr />
-      <h5>Company Info</h5>
+
+      <h5>Companies Info</h5>
       <ul>
         {props.companies.map((company) =>
           <li key={company.id}>
@@ -220,7 +232,7 @@ ReactDOM.render(
   document.getElementById('root-6-2')
 );
 
-// Example 7
+// Example 7. Forms. Controlled components
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -394,7 +406,7 @@ ReactDOM.render(
   document.getElementById('root-7-4')
 );
 
-// Example 8
+// Example 8. Lifting State Up
 const scaleNames = {
   c: 'Celsius',
   f: 'Fahrenheit'
@@ -501,7 +513,7 @@ ReactDOM.render(
   document.getElementById('root-8')
 );
 
-// Example 9
+// Example 9. props.children
 function FlashMessage(props) {
   return (
     <div className={'flash-message flash-message_' + props.type}>

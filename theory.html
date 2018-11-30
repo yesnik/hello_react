@@ -14,28 +14,33 @@
 
     <h2>2. Function and Class Components</h2>
     <ul class="notes">
-      <li><b>Function components</b> accept a single <i>props</i> object argument with data and returns a React element.</li>
+      <li><b>Function components</b> accept a single <code>props</code> object argument with data and returns a React element.</li>
       <li>Always start component names with a capital letter.</li>
-      <li>We recommend naming props from the component’s own point of view rather than the context in which it is being used. Example: <i>user</i> is better than <i>author</i></li>
-      <li>Extracting components might seem like grunt work at first, but having a palette of reusable components (eg. <i>Button, Avatar, Panel</i>) pays off in larger apps.</li>
+      <li>We recommend naming props from the component’s own point of view rather than the context in which it is being used. Example: <code>user</code> is better than <code>author</code></li>
+      <li>Extracting components might seem like grunt work at first, but having a palette of reusable components (eg. <code>Button, Avatar, Panel</code>) pays off in larger apps.</li>
       <li>Component must never modify its own props. Such functions are called <i>pure</i> because they do not attempt to change their inputs, and always return the same result for the same inputs. All React components must act like <i>pure functions</i> with respect to their props.</li>
     </ul>
     <div id="root-2"></div>
 
-    <h2>State and Lifecycle</h2>
+    <h2>3. State and Lifecycle</h2>
     <ul class="notes">
-      <li>State is similar to props, but it is private and fully controlled by the component.</li>
+      <li><code>state</code> is similar to <code>props</code>, but it is private and fully controlled by the component.</li>
       <li><i>Local state</i> is a feature that is available only to class components.</li>
       <li>Class components should always call the base constructor with props.</li>
       <li>In applications with many components, it’s very important to free up resources taken by the components when they are destroyed.</li>
-      <li>We can declare special <i>lifecycle methods</i> on the component class to run some code when a component mounts and unmounts: <i>componentDidMount(), componentWillUnmount()</i></li>
-      <li>The <i>componentDidMount()</i> method runs after the component output has been rendered to the DOM.</li>
-      <li>While <i>this.props</i> is set up by React itself and <i>this.state</i> has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a <i>this.timerId</i>).</li>
+      <li>We can declare special <b>lifecycle methods</b> on the component class to run some code when a component mounts and unmounts: <code>componentDidMount(), componentWillUnmount()</code></li>
+      <li>The <code>componentDidMount()</code> method runs after the component output has been rendered to the DOM.</li>
+      <li>While <code>this.props</code> is set up by React itself and <code>this.state</code> has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a <code>this.timerId</code>).</li>
       <li>Do Not Modify State Directly. This will not re-render a component.
-        Instead, use <i>setState()</i>. The only place where you can assign <i>this.state</i> is the constructor.</li>
-      <li>Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state. Use a second form of <i>setState()</i> that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
+        Instead, use <code>setState()</code>. The only place where you can assign <code>this.state</code> is the constructor.</li>
+      <li>Because <code>this.props</code> and <code>this.state</code> may be updated asynchronously, you should not rely on their values for calculating the next state. Use a second form of <i>setState()</i> that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
 <pre>
-// Correct
+// Wrong
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+
+// Correct (ES6)
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }));
@@ -58,10 +63,9 @@ this.setState(function(state, props) {
       <li>
         You have to be careful about the meaning of this in JSX callbacks. 
         In JavaScript, class methods are not bound by default. 
-        If you forget to bind <i>this.handleClick</i> and pass it to <i>onClick</i>, this will be undefined when the function is actually called.<br>
+        If you forget to bind <code>this.handleClick</code> and pass it to <i>onClick</i>, this will be <code>undefined</code> when the function is actually called.<br>
 
-This is not React-specific behavior; it is a part of how functions work in JavaScript. Generally, if you refer to a method without () after it, 
-such as <i>onClick={this.handleClick}</i>, you should bind that method.
+This is not React-specific behavior; it is a part of how functions work in JavaScript. Generally, if you refer to a method without <code>()</code> after it, such as <code>onClick={this.handleClick}</code>, you should <code>bind</code> that method.
       </li>
       <li>React’s <i>one-way data flow</i> (also called one-way binding) keeps everything modular and fast.</li>
     </ul>
@@ -82,10 +86,10 @@ such as <i>onClick={this.handleClick}</i>, you should bind that method.
     <div id="root-6"></div>
     <div id="root-6-2"></div>
     <ul class="notes">
-      <li>A <i>“key”</i> is a special string attribute you need to include when creating lists of elements.</li>
+      <li>A <code>key</code> is a special string attribute you need to include when creating lists of elements.</li>
       <li>Keys help React identify which items have changed, are added, or are removed. The best way to pick a key is to use a string that uniquely identifies a list item among its siblings.</li>
       <li>
-        When you don’t have stable IDs for rendered items, you may use the item index as a key as a last resort:
+        When you don’t have stable IDs for rendered items, you may use the item <code>index</code> as a key as a last resort:
 <pre>
 const todoItems = todos.map((todo, index) =>
   // Only do this if items have no stable IDs
@@ -96,9 +100,10 @@ const todoItems = todos.map((todo, index) =>
 </pre>
       </li>
       <li>We don’t recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. </li>
-      <li>A good rule of thumb is that elements inside the <i>map()</i> call need keys.</li>
-      <li>Keys used within arrays should be unique among their siblings. So we can use the same keys when we produce two different arrays.</li>
-      <li>JSX allows embedding any expression in curly braces so we could inline the <i>map()</i> result.</li>
+      <li>A good rule of thumb is that elements inside the <code>map()</code> call need keys.</li>
+      <li>Keys used within arrays should be unique among their siblings. 
+      So we can use the same keys when we produce two different arrays.</li>
+      <li>JSX allows embedding any expression in curly braces so we could inline the <code>map()</code> result.</li>
     </ul>
 
 
@@ -107,28 +112,28 @@ const todoItems = todos.map((todo, index) =>
     <ul class="notes">
       <li>In HTML, form elements such as &lt;input&gt;, &lt;textarea&gt;, and &lt;select&gt; typically maintain their own state and update it based on user input. </li>
       <li>An input form element whose value is controlled by React is called a <i>"controlled component"</i>.</li>
-      <li>Since the <i>value</i> attribute is set on our form element, the displayed value will always be <i>this.state.value</i>, making the React state <i>the source of truth</i>. </li>
-      <li>Because <i>value</i> attribute of &lt;input type="file" /&gt; is read-only, it is an <i>uncontrolled component</i> in React. </li>
+      <li>Since the <code>value</code> attribute is set on our form element, the displayed value will always be <code>this.state.value</code>, making the React state <i>the source of truth</i>. </li>
+      <li>Because <code>value</code> attribute of &lt;input type="file" /&gt; is read-only, it is an <i>uncontrolled component</i> in React. </li>
     </ul>
 
     <h3>Textarea tag</h3>
     <div id="root-7-2"></div>
     <ul class="notes">
-      <li>In HTML, a &lt;textarea&gt; element defines its text by its children. In React, it uses a <i>value</i> attribute instead. 
+      <li>In HTML, a &lt;textarea&gt; element defines its text by its children. In React, it uses a <code>value</code> attribute instead. 
       </li>
     </ul>
 
     <h3>select tag</h3>
     <div id="root-7-3"></div>
     <ul class="notes">
-      <li>React, instead of using this <i>selected</i> attribute, uses a <i>value</i> attribute on the root select tag.</li>
+      <li>React, instead of using this <code>selected</code> attribute, uses a <code>value</code> attribute on the root select tag.</li>
     </ul>
 
     <h3>Handling Multiple Inputs</h3>
     <div id="root-7-4"></div>
     <ul class="notes">
       <li>
-        When you need to handle multiple controlled input elements, you can add a name attribute to each element and let the handler function choose what to do based on the value of <i>event.target.name</i>.
+        When you need to handle multiple controlled input elements, you can add a name attribute to each element and let the handler function choose what to do based on the value of <code>event.target.name</code>.
       </li>
     </ul>
 
@@ -136,8 +141,9 @@ const todoItems = todos.map((todo, index) =>
     <h2>8. Lifting State Up</h2>
     <div id="root-8"></div>
     <ul class="notes">
-      <li>There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. </li>
-      <li>In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called “lifting state up”.</li>
+      <li>There should be <i>a single "source of truth"</i> for any data that changes in a React application. 
+      Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor.</li>
+      <li>In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called <i>“lifting state up”</i>.</li>
     </ul>
 
     <h2>9. props.children</h2>
@@ -145,7 +151,7 @@ const todoItems = todos.map((todo, index) =>
     <ul class="notes">
       <li>
         Anything inside the &lt;FancyBorder&gt; JSX tag gets passed into 
-          the FancyBorder component as a <i>children</i> prop. 
+          the <code>FancyBorder</code> component as a <code>children</code> prop. 
       </li>
       <li>At Facebook, we use React in thousands of components, and we haven’t found any use cases where we would recommend creating component inheritance hierarchies.</li>
       <li>If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.</li>
@@ -158,7 +164,7 @@ const todoItems = todos.map((todo, index) =>
 
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     -->
-    
+
     <script src="js/vendor/react.development.js"></script>
     <script src="js/vendor/react-dom.development.js"></script>
     <script src="js/vendor/babel.min.js"></script>
