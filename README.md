@@ -6,7 +6,7 @@ This repo contains several apps that demonstrate key concepts of React.
 
 ## Installation
 
-1. Clone this repo: `git clone ...`
+1. Clone this repo: `git clone git@github.com:yesnik/hello_react.git`
 
 2. Run development server:
 
