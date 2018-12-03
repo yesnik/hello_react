@@ -28,7 +28,9 @@
     <ul class="notes">
       <li><code>state</code> is similar to <code>props</code>, but it is private and fully controlled by the component.</li>
       <li><i>Local state</i> is a feature that is available only to class components.</li>
-      <li>Class components should always call the base constructor with props.</li>
+      <li>In JavaScript classes, you need to always call <code>super</code> when defining the constructor of a subclass. 
+        Class components that have a constructor should start it with a <code>super(props)</code> call.
+      </li>
       <li>In applications with many components, it’s very important to free up resources taken by the components when they are destroyed.</li>
       <li>We can declare special <b>lifecycle methods</b> on the component class to run some code when a component mounts and unmounts: <code>componentDidMount(), componentWillUnmount()</code></li>
       <li>The <code>componentDidMount()</code> method runs after the component output has been rendered to the DOM.</li>
@@ -70,6 +72,8 @@ this.setState(function(state, props) {
 This is not React-specific behavior; it is a part of how functions work in JavaScript. Generally, if you refer to a method without <code>()</code> after it, such as <code>onClick={this.handleClick}</code>, you should <code>bind</code> that method.
       </li>
       <li>React’s <i>one-way data flow</i> (also called one-way binding) keeps everything modular and fast.</li>
+      <li>In React, however, it is a convention to use <code>on[Event]</code> names for props which represent 
+        events and <code>handle[Event]</code> for the methods which handle the events.</li>
     </ul>
 
     <h2>5. Conditional Rendering</h2>
